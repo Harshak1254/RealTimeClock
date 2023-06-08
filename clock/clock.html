@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Real-Time Clock</title>
+ <style>
+  body{
+    
+    background-color: rgb(134, 183, 247);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .container {
+  text-align: center;
+  margin-top: 200px;
+  
+}
+
+#clock {
+  font-size: 48px;
+  font-weight: bold;
+}
+
+#date {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+
+ </style>
+ <script>
+  function updateClock() {
+  const now = new Date();
+  const hours = formatTime(now.getHours());
+  const minutes = formatTime(now.getMinutes());
+  const seconds = formatTime(now.getSeconds());
+  
+  
+
+  const clockElement = document.getElementById("clock");
+  clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+  const dateElement = document.getElementById("date");
+  const date = formatTime(now.getDate());
+  const month = formatTime(now.getMonth() + 1); // Months are zero-based
+  const year = now.getFullYear();
+  dateElement.textContent = `${date}/${month}/${year}`;
+}
+
+function formatTime(time) {
+  return time < 10 ? `0${time}` : time;
+}
+
+// Update the clock every second
+setInterval(updateClock, 1000);
+
+ </script>
+</head>
+<body>
+  <div class="container">
+    <div id="clock"></div>
+    <div id="date"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
